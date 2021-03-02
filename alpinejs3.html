@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineJS 2</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <style>
+       
+    </style>
+
+</head>
+<body>
+
+    <!--  Gestión de eventos -->
+
+    <div x-data="main()">
+        <button @click="onClick(event)"
+            @mouseover="onMouseOver(event)"
+            @mouseout="onMouseOut(event)"
+        > Boton </button>
+    </div>
+
+    <div x-data="secondary()">
+        <p x-text="texto"></p>
+        <input type="text" class="text" x-on:keydown.enter="onKeyPressEnter(event)">
+        <input type="text" class="text" x-on:input="onInput(event)">
+        <!-- Bloquear accion -->
+        <input type="checkbox" x-on:click.prevent>
+    </div>
+    
+
+    <script>
+        function main() {
+            return {
+                onClick: function (event) {
+                    console.log('Se pulso el boton'),
+                    console.log(event.target);
+                },
+                onMouseOver: function (event) {
+                    event.target.style.backgroundColor = 'limegreen',
+                    event.target.style.color = 'white'
+
+                },
+                onMouseOut: function (event) {
+                    event.target.style.backgroundColor = 'lightgrey',
+                    event.target.style.color = 'black'
+                }
+            }
+        }
+
+        function secondary() {
+            return {
+                texto: '',
+                onKeyPressEnter: function(event) {
+                    this.texto = event.target.value
+                },
+
+                onInput: function(event) {
+                    this.texto = event.target.value
+                }
+            }
+        }
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineJS 2</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <style>
+        .active {
+            background-color: limegreen;
+            color: white;
+        }
+        .inactive {
+            background: rgba( 0, 0, 0, 0.2);
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- Uso de x-show y enlace de propiedades con x-bind -->
+
+    <div x-data="main()">
+        <span x-text="open"></span>
+        <button x-on:click="open = !open">
+            Cambia!
+        </button>
+        <p x-show="open">
+            Hola Mundo
+        </p>
+
+        <p x-bind:class="{ 'active': open, 'inactive': !open}">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore sequi rem sed voluptates aliquam. Amet nobis, veritatis consectetur, quisquam iste culpa laboriosam commodi recusandae odio sequi dolores ipsum enim laudantium.
+        </p>
+    </div>
+    
+
+    <script>
+        function main() {
+            return {
+               open: false
+            }
+        }
+    </script>
+    
+</body>
+</html>
