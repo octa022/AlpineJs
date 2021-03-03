@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineJS 4</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <style>
+       
+    </style>
+
+</head>
+<body>
+
+    <!--  Doble enlace con x-model -->
+
+    <div x-data="main()">
+        <p x-text="texto"></p>
+        <br>
+        <label for="">Instantáneo</label>
+        <input type="text" x-model="texto" >
+        <br>
+        <label for="">Debounce</label>
+        <input class="text" x-model.debounce.750="texto">
+        <br>
+        <button @click="onClick()"> Boton </button>
+    </div>
+
+    <div x-data="formulario()">
+        <h1>Formulario</h1>
+
+        <div>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" x-model="persona.nombre">
+        </div>
+
+        <div>
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" x-model="persona.apellido">
+        </div>
+
+        <div>
+            <label for="edad">Edad</label>
+            <input type="number" id="edad" x-model="persona.edad" max="99">
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" x-model="persona.email">
+        </div>
+
+        <button @click="sendForm()">Enviar</button>
+
+        <h2><u>Resultado</u></h2>
+        <span x-text="persona.nombre"></span>
+        <span x-text="persona.apellido"></span>
+        <span x-text="persona.edad"></span>
+        <span x-text="persona.email"></span>
+
+    </div>
+
+    <script>
+        function main() {
+            return {
+                texto: 'Hola',
+                // metodo
+                onClick: function() {
+                    console.log(this.texto)
+                    setTimeout(() => {
+                        this.texto = "Cambio de valor por SetTimeout"
+                    }, 3000);
+                }
+            }
+        }
+
+        function formulario() {
+            return {
+                persona: {},
+                sendForm: function () {
+                    console.log({...this.persona})
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>
